@@ -1,0 +1,30 @@
+﻿@page
+@model PythonStudy.Pages.RegistrationModel
+@{
+}
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form style="border: 3px solid black; width: 450px; background-color: whitesmoke; margin-top: 20px;" method="POST">
+    <input type="text" placeholder="Username" style="width: 300px; border: 2px solid lightblue; margin: 15px;" name="username" value="@Model.userInfo.username"/>
+    <input type="text" placeholder="Email" style="width: 300px; border: 2px solid lightblue; margin: 15px;" name="email" value="@Model.userInfo.email"/>
+    <input type="text" placeholder="Password" style="width: 300px; border: 2px solid lightblue; margin: 15px;" name="password" value="@Model.userInfo.password"/>
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-cm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+    <button class="btn btn-primary btn-sm" id="submitR" type="submit" style="width: 150px; margin: 15px;">Submit</button>
+</form>

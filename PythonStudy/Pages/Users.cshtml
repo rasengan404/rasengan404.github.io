@@ -1,0 +1,32 @@
+﻿@page
+@model PythonStudy.Pages.UsersModel
+@{
+}
+
+<br>
+<h2>List of Users</h2>
+<a class="btn btn-primary btn-sm" href="/Registration">Registration Page</a>
+<br />
+<table class="table" style="background-color: whitesmoke; border: 1px solid black; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Creation DateTime</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listUsers)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.username</td>
+                <td>@item.email</td>
+                <td>@item.password</td>
+                <td>@item.created_at</td>
+            </tr>
+        }
+    </tbody>
+</table>
