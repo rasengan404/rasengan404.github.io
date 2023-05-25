@@ -71,7 +71,7 @@
       const code = document.getElementById('python-code').value;
       const outputElement = document.getElementById('output');
       
-      axios.post('https://api.jdoodle.com/v1/execute', {
+      axios.post('https://cors-anywhere.herokuapp.com/https://api.jdoodle.com/v1/execute', {
         clientId: 'd6f56fb62c9cb394210a2c7425cc93c7',
         clientSecret: '7126aeb78dce69e151ab4bb252d8b1b91b2933c6b5ffaadd73685a1401592ed',
         language: 'python3',
