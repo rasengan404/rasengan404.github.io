@@ -1,6 +1,6 @@
 <?php
   // Get the Python code from the request
-  $code = $_GET['code'];
+  $code = $_POST['code'];
 
   // Set the API endpoint URL
   $url = 'https://api.jdoodle.com/v1/execute';
@@ -18,15 +18,15 @@
     'script' => $code
   );
 
-  // Append the request data to the API endpoint URL
-  $url .= '?' . http_build_query($data);
-
   // Create a new cURL handle
   $ch = curl_init();
 
   // Set the cURL options
   curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
   // Execute the request and get the response
   $response = curl_exec($ch);
