@@ -64,18 +64,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <script>
-  // Execute Python code on form submission
   document.getElementById('python-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const code = document.getElementById('python-code').value;
     const outputElement = document.getElementById('output');
 
-    // Make a request to the server-side script
-    axios.get('proxy.php', {
-      params: {
-        code: code
-      }
+    axios.post('https://cors-anywhere.herokuapp.com/https://rasengan404.github.io/proxy.php', {
+      code: code
     })
     .then(function (response) {
       const output = response.data.output;
@@ -86,6 +82,7 @@
       outputElement.textContent = 'Error occurred while executing the code.';
     });
   });
-</script>   
+</script>
+   
 </body>
 </html>
