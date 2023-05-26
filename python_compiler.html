@@ -28,11 +28,11 @@
       <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="index.html">Sākums</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="python_course.html">Python Pamati</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="python_compiler.html">Python Kompilators</a>
         </li>
       </ul>
@@ -49,7 +49,7 @@
           <label for="python-code">Python kods:</label>
           <textarea class="form-control" id="codeInput" rows="5"></textarea>
         </div>
-        <button type="submit" onclick="executeCode()" class="btn btn-primary">Izpildīt</button>
+        <button type="button" onclick="executeCode()" class="btn btn-primary">Izpildīt</button>
       </form>
     </div>
     <div class="compiler-section">
@@ -66,26 +66,15 @@
   <script>
     function executeCode() {
       const code = document.getElementById('codeInput').value;
-      const xhr = new XMLHttpRequest();
-      
-      xhr.open('POST', 'proxy.php', true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            document.getElementById('output').innerText = response.output;
-          } else {
-            console.error('Error:', xhr.status);
-          }
-        }
-      };
-
-      const data = 'code=' + encodeURIComponent(code);
-      xhr.send(data);
+      axios.post('proxy.php', 'code=' + encodeURIComponent(code), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        .then(function(response) {
+          document.getElementById('output').innerText = response.data.output;
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
     }
   </script>
-   
 </body>
 </html>
