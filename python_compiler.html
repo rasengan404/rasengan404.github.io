@@ -74,11 +74,13 @@
       code: code
     })
     .then(function (response) {
+      // Handle the successful response
       const output = response.data.output;
       outputElement.textContent = output;
     })
     .catch(function (error) {
-      console.log(error);
+      // Handle the error
+      console.log('An error occurred:', error);
       outputElement.textContent = 'Error occurred while executing the code.';
     });
   });
