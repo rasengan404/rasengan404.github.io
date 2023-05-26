@@ -70,7 +70,7 @@
     const code = document.getElementById('python-code').value;
     const outputElement = document.getElementById('output');
 
-    axios.post('https://cors-anywhere.herokuapp.com/https://rasengan404.github.io/proxy.php', {
+    axios.get('https://cors-anywhere.herokuapp.com/https://rasengan404.github.io/proxy.php', {
       code: code
     })
     .then(function (response) {
