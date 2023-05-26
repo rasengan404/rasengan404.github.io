@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-$code = $_POST['code'];
+$code = $_GET['code'];
 $url = 'https://api.jdoodle.com/v1/execute';
 $clientId = 'd6f56fb62c9cb394210a2c7425cc93c7';
 $clientSecret = '7126aeb78dce69e151ab4bb252d8b1b91b2933c6b5ffaadd73685a1401592ed';
