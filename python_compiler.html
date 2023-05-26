@@ -64,17 +64,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <script>
-    function executeCode() {
-      const code = document.getElementById('codeInput').value;
+  function executeCode() {
+    const code = document.getElementById('codeInput').value;
 
-      axios.post('proxy.php', 'code=' + encodeURIComponent(code), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-        .then(function(response) {
-          document.getElementById('output').innerText = response.data.output;
-        })
-        .catch(function(error) {
-          console.error('Error:', error);
-        });
-    }
-  </script>
+    axios.get('proxy.php', { params: { code: code } })
+      .then(function(response) {
+        document.getElementById('output').innerText = response.data.output;
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+  }
+</script>
 </body>
 </html>
