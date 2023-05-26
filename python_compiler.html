@@ -47,9 +47,9 @@
       <form id="python-form">
         <div class="form-group">
           <label for="python-code">Python kods:</label>
-          <textarea class="form-control" id="python-code" rows="5"></textarea>
+          <textarea class="form-control" id="codeInput" rows="5"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Izpildīt</button>
+        <button type="submit" onclick="executeCode()" class="btn btn-primary">Izpildīt</button>
       </form>
     </div>
     <div class="compiler-section">
@@ -64,27 +64,28 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <script>
-  document.getElementById('python-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+    function executeCode() {
+      const code = document.getElementById('codeInput').value;
+      const xhr = new XMLHttpRequest();
+      
+      xhr.open('POST', 'proxy.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    const code = document.getElementById('python-code').value;
-    const outputElement = document.getElementById('output');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            document.getElementById('output').innerText = response.output;
+          } else {
+            console.error('Error:', xhr.status);
+          }
+        }
+      };
 
-    axios.get('https://cors-anywhere.herokuapp.com/https://rasengan404.github.io/proxy.php', {
-      code: code
-    })
-    .then(function (response) {
-      // Handle the successful response
-      const output = response.data.output;
-      outputElement.textContent = output;
-    })
-    .catch(function (error) {
-      // Handle the error
-      console.log('An error occurred:', error);
-      outputElement.textContent = 'Error occurred while executing the code.';
-    });
-  });
-</script>
+      const data = 'code=' + encodeURIComponent(code);
+      xhr.send(data);
+    }
+  </script>
    
 </body>
 </html>
