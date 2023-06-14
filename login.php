@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Connect to SQLite database
-    $db = new SQLite3('db/users.db');
+    $db = new SQLite3('users.db');
 
     // Check if username exists
     $hashedPassword = $db->querySingle("SELECT password FROM users WHERE username='$username'");
