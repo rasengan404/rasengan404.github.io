@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_SESSION['username'];
 
     // Connect to SQLite database
-    $db = new SQLite3('db/codes.db');
+    $db = new SQLite3('codes.db');
 
     // Create codes table if it doesn't exist
     $db->exec("CREATE TABLE IF NOT EXISTS codes (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, code TEXT)");
