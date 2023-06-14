@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Connect to SQLite database
-    $db = new SQLite3('db/users.db');
+    $db = new SQLite3('users.db');
 
     // Create users table if it doesn't exist
     $db->exec("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)");
